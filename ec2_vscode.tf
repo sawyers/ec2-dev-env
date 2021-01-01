@@ -69,6 +69,23 @@ resource "aws_instance" "vs-code" {
   }
 }
 
+
+resource "aws_cloudwatch_metric_alarm" "idle" {
+  alarm_name = "stop-idle-instance"
+  metric_name = "CPUUtilization"
+  namespace = "AWS/EC2"
+  period = "120"
+  statistic = "Average"
+  comparison_operator = "LessThanThreshold"
+  threshold = "10"
+  evaluation_periods = "5"
+  alarm_description = "Monitor for idle agent"
+  insufficient_data_actions = []
+  alarm_actions = ["arn:aws:automate:us-east-1:ec2:stop"]
+  dimensions = {
+    InstanceId = aws_instance.vs-code.id
+  }
+}
 output "public_ip" {
   value = aws_instance.vs-code.public_ip
 }
