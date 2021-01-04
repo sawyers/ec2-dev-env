@@ -82,7 +82,7 @@ resource "aws_cloudwatch_metric_alarm" "idle" {
   period = "120"
   statistic = "Average"
   comparison_operator = "LessThanThreshold"
-  threshold = "10"
+  threshold = "2"
   evaluation_periods = "5"
   alarm_description = "Monitor for idle agent"
   insufficient_data_actions = []
