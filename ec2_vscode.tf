@@ -64,11 +64,16 @@ resource "aws_instance" "vs-code" {
   iam_instance_profile = aws_iam_instance_profile.dev_profile.name
   key_name             = var.ami_key_pair_name
   user_data            = file("provision.sh")
+}
+
+resource "null_resource" "vs-code" {
+  connection {
+    host = aws_instance.vs-code.public_ip
+  }
   provisioner "local-exec" {
     command     = "bash ./update_ssh.sh ${aws_instance.vs-code.public_ip}"
   }
 }
-
 
 resource "aws_cloudwatch_metric_alarm" "idle" {
   alarm_name = "stop-idle-instance"

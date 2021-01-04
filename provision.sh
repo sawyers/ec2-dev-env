@@ -15,3 +15,6 @@ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nf
 
 runuser -l centos -c 'pyenv install 3.8.2'
 runuser -l centos -c 'pyenv global 3.8.2'
+
+python -m pip install --upgrade pip
+python -m pip install poetry
