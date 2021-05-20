@@ -79,7 +79,7 @@ resource "aws_cloudwatch_metric_alarm" "idle" {
   alarm_name = "stop-idle-instance"
   metric_name = "CPUUtilization"
   namespace = "AWS/EC2"
-  period = "120"
+  period = "60"
   statistic = "Average"
   comparison_operator = "LessThanThreshold"
   threshold = "2"

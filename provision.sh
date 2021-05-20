@@ -12,7 +12,7 @@ exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
   runuser -l centos -c "curl https://pyenv.run | bash"
   echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~centos/.bashrc
   echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~centos/.bashrc
-  echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~centos/.bashrc
+  runuser -l centos -c 'eval "$(pyenv init --path)"'
   source ~centos/.bashrc
   pyenv install 3.8.2
   pyenv global 3.8.2

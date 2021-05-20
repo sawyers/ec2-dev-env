@@ -6,7 +6,6 @@ OLDIP=`grep -w hobby-coding -A 1 ~/.ssh/config | awk '/HostName/ {print $2}'`
 sed -i "s/$OLDIP/$1/g" ~/.ssh/config
 
 scp ~/.ssh/id_rsa hobby-coding:~centos/.ssh && \
-
 ssh -oStrictHostKeyChecking=no hobby-coding uptime
 
 while [ $? -ne 0 ]; do
