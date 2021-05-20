@@ -1,6 +1,6 @@
 #! /bin/bash -xe
 exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
-  yum install -y libselinux-python3.x86_64 yum-utils
+  yum install -y libselinux-python3.x86_64 yum-utils libffi-devel
   yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
   yum install -y containerd.io docker-ce docker-ce-cli
   usermod -aG docker centos
